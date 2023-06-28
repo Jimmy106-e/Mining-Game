@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfd8klkds38jt"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_jxg47"]
+[ext_resource type="Environment" uid="uid://dbads61rrx58c" path="res://Misc/default_env.tres" id="1_k8gu5"]
+[ext_resource type="PackedScene" uid="uid://bc2sh4w2xpxta" path="res://Scenes/player.tscn" id="2_4qri1"]
+[ext_resource type="MeshLibrary" uid="uid://dmloq04qw6ffh" path="res://Misc/TestMeshLibrary.tres" id="2_xie7c"]
+[ext_resource type="Script" path="res://Scripts/CanvasLayer.gd" id="5_2jq13"]
+[ext_resource type="PackedScene" uid="uid://b2ywu1djdx55p" path="res://Scenes/UI/pause_menu.tscn" id="5_tqlhp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_el8ux"]
+size = Vector3(300, 0, 300)
+
+[node name="Main" type="Node3D"]
+process_mode = 1
+script = ExtResource("1_jxg47")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_k8gu5")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("2_xie7c")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(-1, 0, 655360, -65536, 1, 655360, -1, 1, 655360, -2, 1, 655360, -65535, 0, 655360, -2, 0, 655360, -2, 65535, 655360, -2, 65534, 655360, -65535, 65535, 655360, -65536, 65535, 655360, -1, 65535, 655360, -1, 65534, 655360, -65536, 65534, 655360, -65535, 65534, 655360, -3, 1, 655360, -3, 2, 655360, -2, 2, 655360, -1, 2, 655360, -65536, 2, 655360, -65534, 2, 655360, -65534, 1, 655360, -65534, 0, 655360, -65534, 65535, 655360, -65534, 65534, 655360, -65534, 65533, 655360, -65535, 65533, 655360, -65536, 65533, 655360, -1, 65533, 655360, -2, 65533, 655360, -3, 65533, 0, -3, 65534, 655360, -3, 65535, 655360, -3, 0, 655360, -4, 65532, 0, -4, 65533, 0, -4, 65534, 0, -4, 65535, 0, -4, 0, 0, -4, 1, 0, -4, 2, 0, -4, 3, 0, -3, 3, 0, -2, 3, 0, -1, 3, 0, -65536, 3, 0, -65535, 3, 0, -65533, 4, 0, -65533, 3, 0, -65533, 2, 0, -65533, 1, 0, -65532, 1, 0, -65532, 0, 0, -65532, 65535, 0, -65532, 65534, 0, -65532, 65533, 0, -65533, 65533, 0, -65532, 65532, 0, -65532, 65531, 0, -65533, 65532, 0, -65533, 65531, 0, -65534, 65531, 0, -65534, 65532, 0, -65535, 65532, 0, -65536, 65532, 0, -1, 65532, 0, -2, 65532, 0, -65535, 65531, 0, -65536, 65531, 0, -1, 65531, 0, -2, 65531, 0, -3, 65531, 0, -3, 65532, 0, -4, 65531, 0, -5, 65531, 0, -5, 65532, 0, -5, 65533, 0, -5, 65534, 0, -5, 0, 0, -5, 65535, 0, -5, 1, 0, -5, 3, 0, -5, 2, 0, -65533, 0, 0, -65533, 65535, 0, -65533, 65534, 0, -65532, 2, 0, -65532, 3, 0, -65532, 4, 0, -65535, 4, 0, -65536, 4, 0, -1, 4, 0, -2, 4, 0, -3, 4, 786432, -4, 4, 786432, -5, 4, 786432, -65536, 0, 655360, -65535, 1, 655360, -65535, 2, 655360, -65534, 3, 0, -65534, 4, 0, 4, 65531, 1376256, 3, 65531, 1376256, 2, 65531, 1376256, 4, 65530, 1376256, 3, 65530, 1376256, 2, 65530, 1376256, 3, 65529, 1376256, 2, 65529, 1376256, 4, 65528, 1376256, 3, 65528, 1376256, 2, 65528, 1376256, 1, 65531, 1376256, 1, 65529, 1376256, 1, 65528, 1376256, 0, 65531, 1376256, 0, 65529, 1376256, 0, 65528, 1376256, 0, 65530, 1376256, 1, 65530, 1376256, 4, 65529, 1376256)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_4qri1")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.827375, 3.94523e-07, 0.56165, -0.368831, 0.75416, 0.543329, -0.423574, -0.656691, 0.623973, 4.7699, 8.08295, 2.81781)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("5_2jq13")
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("5_tqlhp")]
+process_mode = 2
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_el8ux")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

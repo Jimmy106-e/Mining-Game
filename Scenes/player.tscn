@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc2sh4w2xpxta"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_vf6ft"]
+[ext_resource type="Texture2D" uid="uid://emshsb7idljf" path="res://Textures/crosshair-pack/PNG/Black/crosshair046.png" id="2_sryx4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6bw6a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jxhjm"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_vf6ft")
+camera_sens = 15.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_6bw6a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_jxhjm")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera3D/CanvasLayer"]
+texture_filter = 1
+position = Vector2(576, 324)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_sryx4")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(0.5, 0, 0, 0, -8.74228e-08, -0.5, 0, 2, -2.18557e-08, 0, 0, -0.5)
